@@ -1,24 +1,43 @@
-# README
+# 環境構築方法
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+以下の手順に従って、ローカル環境にこのプロジェクトをセットアップしてください。
 
-Things you may want to cover:
+## 1. リポジトリのクローン
 
-* Ruby version
+まず、GitHub からリポジトリをクローンします。
 
-* System dependencies
+```
+git clone https://github.com/あなたのgithubアカウント名/rails-docker.git
+cd rails-docker
+```
 
-* Configuration
+## 2. Docker と Docker Compose をインストールされているか確認しましょう
 
-* Database creation
+以下のコマンドを入力し、バージョンを確認し、正しくインストールされてるか確認しましょう
 
-* Database initialization
+```
+docker --version
+docker-compose --version
+```
 
-* How to run the test suite
+## 3. 必要なコンテナのビルドと起動
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+docker-compose up --build -d
+```
 
-* Deployment instructions
+## 4.データベースの作成
 
-* ...
+以下のコマンドを叩いてデータベースを作成します。
+
+```
+docker-compose exec web rails db:create
+```
+
+## 5. マイグレーションの実行
+
+```
+docker-compose exec web rails db:migrate
+```
+
+## 6.以上で環境構築は終了です
